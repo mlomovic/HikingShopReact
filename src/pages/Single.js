@@ -49,27 +49,31 @@ const Single = () => {
   const addToCart = (event) => {
     event.preventDefault();
 
-    cart.some((item)=>{
+    cart.some((item) => {
       return item.id == params.id;
     })
 
-    ?
+      ?
 
-    cart.filter(item => {
-      if(item.id == params.id){
-        return item;
-      }
-    })[0].qty += Number(event.target.selectQty.value)
-    
-    :
+      cart.filter((item, idx) => {
+        if (item.id == params.id) {
+          return item
+        }
+      })[0].qty += Number(event.target.selectQty.value)
 
-    setCart(cart => [...cart, {
-      id: params.id,
-      name: product.name,
-      price: product.price,
-      img: product.img,
-      qty: event.target.selectQty.value
-    }]);
+      :
+
+      setCart(cart => [...cart, {
+        id: params.id,
+        name: product.name,
+        price: product.price,
+        img: product.img,
+        qty: Number(event.target.selectQty.value)
+      }]);
+
+
+    navigate('/products');
+
   }
 
 
@@ -93,7 +97,7 @@ const Single = () => {
               <option value="2">2</option>
               <option value="3">3</option> */}
             </select>
-            <button>Order now</button>
+            <button type='submit'>Order now</button>
           </form>
           <hr />
           <p>Category:

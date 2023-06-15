@@ -1,7 +1,13 @@
-import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import CartContext from '../context/CartContext';
+import ProductsContext from '../context/ProductsContext';
 
 const Navbar = () => {
+
+    const { cart } = useContext(CartContext);
+    const { products } = useContext(ProductsContext);
+
     return (
         <nav>
             <ul>
@@ -9,7 +15,7 @@ const Navbar = () => {
                     <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <Link to="products">Products</Link>
+                    <Link to="products">Products <span>({products.length})</span></Link>
                 </li>
                 <li>
                     <Link to="about">About us</Link>
@@ -18,7 +24,7 @@ const Navbar = () => {
                     <Link to="contact">Contact us</Link>
                 </li>
                 <li>
-                    <Link to="cart">Cart</Link>
+                    <Link to="cart">Cart <span>({cart.length})</span></Link>
                 </li>
                 <li>
                     <Link to="admin">Admin</Link>
